@@ -52,6 +52,14 @@ $menus = [
 						]
 	],
 	[
+		'menu' 		 => 'Comments',
+		'icon'		 => 'icon-comment-discussion',
+		'controller' => 'admin/Dashboard',
+		'method'	 => 'index',
+		'access'	 => ['administrator', 'user', 'writer'],
+		'active'	 => NULL,
+	],
+	[
 		'menu' 		 => 'Users', 
 		'icon' 		 => 'icon-users4', 
 		'controller' => 'admin/user',

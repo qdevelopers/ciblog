@@ -6,6 +6,7 @@ class Dashboard extends CI_Controller {
 
 	
 	private $data;
+	
 	public function __construct(){
 		 //happy coding, pakde
 		 parent::__construct();
