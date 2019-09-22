@@ -315,7 +315,6 @@
 		function showGreeting() {
 
 			swal({
-
 				title: 'Good Job',
 				text: 'you are a curious person. great! Einstein did such a thing as well',
 				icon: 'success',
