@@ -19,7 +19,7 @@ class Login extends CI_Controller {
 		$_SESSION[$this->input->ip_address()] = $tkn;
 
 		$data['csrf'] = $tkn;
-		$data['title'] = $this->config->item('site');
+		$data['title'] = "Start Session ". $this->config->item('site');
 		$this->load->view('admin/login_v', $data);
 	}
 

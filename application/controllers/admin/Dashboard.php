@@ -9,15 +9,18 @@ class Dashboard extends CI_Controller {
 	public function __construct(){
 		 //happy coding, pakde
 		 parent::__construct();
-		 is_authorize();
+		 is_authorized();
 		 $menu = $this->config->item('menu');
 		 $this->data['menu'] = $menu[$this->session->userdata('access')];
-		 $this->data['title'] = $this->config->item('site');
+		 $this->data['title'] = "Dashboard | ". $this->config->item('site');
+		 $this->data['subtitle_header'] = "Welcome ".  $this->session->userdata('name');
 		 $this->data['js'] = "dashboard";
 	}
+	
 	public function index()
 	{
-		$this->load->view('layout', $this->data, FALSE);
+		 $this->data['content'] = $this->load->view('admin/dashboard_v', $this->data, TRUE);
+		 $this->load->view('layout', $this->data, FALSE);
 		
 	}
 

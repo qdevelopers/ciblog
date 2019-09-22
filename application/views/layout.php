@@ -8,35 +8,35 @@
 	<title><?php echo $title ?></title>
 
 	<!-- Global stylesheets -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url() ?>assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url() ?>assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url() ?>assets/css/layout.min.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url() ?>assets/css/components.min.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url() ?>assets/css/colors.min.css" rel="stylesheet" type="text/css">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css"> -->
+	<link href="<?php echo base_url(); ?>assets/global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url(); ?>assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url(); ?>assets/css/layout.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url(); ?>assets/css/components.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url(); ?>assets/css/colors.min.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
-	<script src="<?php echo base_url() ?>assets/js/main/jquery.min.js"></script>
-	<script src="<?php echo base_url() ?>assets/js/main/bootstrap.bundle.min.js"></script>
-	<script src="<?php echo base_url() ?>assets/js/plugins/loaders/blockui.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/global_assets/js/main/jquery.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/global_assets/js/main/bootstrap.bundle.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/global_assets/js/plugins/loaders/blockui.min.js"></script>
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
-	<script src="<?php echo base_url() ?>assets/js/app.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/app.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/swal.js"></script>
 	<!-- /theme JS files -->
-	<script src="<?php echo base_url() ?>assets/myjs/<?php echo $js . ".js" ?>"></script>
 
 </head>
 
-<body class="navbar-top">
-
-	<!-- Main navbar -->
+<body class=" navbar-top">
+	<!-- Main navbar 
+		-->
 	<div class="navbar navbar-expand-md navbar-dark fixed-top">
 		<div class="navbar-brand">
 			<a href="../full/index.html" class="d-inline-block">
-				<img src="<?php echo base_url() ?>assets/images/logo_light.png" alt="">
+				<img src="<?php echo base_url(); ?>assets/global_assets/images/logo_light.png" alt="">
 			</a>
 		</div>
 
@@ -75,8 +75,8 @@
 
 				<li class="nav-item dropdown dropdown-user">
 					<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-						<img src="<?php echo base_url() ?>assets/images/image.png" class="rounded-circle" alt="">
-						<span><?php echo $this->session->userdata('name') ?></span>
+						<img src="<?php echo base_url(); ?>assets/images/users/<?php echo $this->session->userdata['photo'] ?>" class="rounded-circle" alt="">
+						<span><?php echo $this->session->userdata['name'] ?></span>
 					</a>
 
 					<div class="dropdown-menu dropdown-menu-right">
@@ -85,7 +85,7 @@
 						<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span class="badge badge-pill bg-blue ml-auto">58</span></a>
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
-						<a href="<?php echo site_url('admin/Login/logout') ?>" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+						<a href="<?php echo site_url('admpanel/logout') ?>" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
 					</div>
 				</li>
 			</ul>
@@ -98,7 +98,7 @@
 	<div class="page-content">
 
 		<!-- Main sidebar -->
-		<div class="sidebar sidebar-dark sidebar-main sidebar-fixed sidebar-expand-md">
+		<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
 
 			<!-- Sidebar mobile toggler -->
 			<div class="sidebar-mobile-toggler text-center">
@@ -122,13 +122,13 @@
 					<div class="card-body">
 						<div class="media">
 							<div class="mr-3">
-								<a href="#"><img src="<?php echo base_url() ?>assets/images/image.png" width="38" height="38" class="rounded-circle" alt=""></a>
+								<a href="#"><img src="<?php echo base_url(); ?>assets/images/users/<?php echo $this->session->userdata['photo'] ?>" width="38" height="38" class="rounded-circle" alt=""></a>
 							</div>
 
 							<div class="media-body">
-								<div class="media-title font-weight-semibold"><?php echo $this->session->userdata('name') ?></div>
+								<div class="media-title font-weight-semibold"><?php echo $this->session->userdata['name'] ?></div>
 								<div class="font-size-xs opacity-50">
-									<i class="icon-key font-size-sm"></i> &nbsp; <?php echo $this->session->userdata('access') ?>
+									<i class="icon-key font-size-sm"></i> &nbsp;<?php echo $this->session->userdata['access'] ?>
 								</div>
 							</div>
 
@@ -149,17 +149,50 @@
 						<li class="nav-item-header">
 							<div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu" title="Main"></i>
 						</li>
-						<?php foreach ($menu as $key => $val) : ?>
-							<li class="nav-item">
-								<a 
-									href="<?php echo site_url($val['controller']) ?>" class="nav-link <?php echo (ucfirst($this->router->fetch_class()) === $val['menu']) ? "active" : NULL ?>">
-									
-									<i class="<?php echo $val['icon'] ?>"></i>
-										<span><?php echo $val['menu'] ?></span>
-								</a>
-							</li>
+						<?php foreach ($menu as $parents => $parent) {
+							$menu_active;
+							if ($parent['menu'] === ucfirst($this->router->fetch_class())) {
+								$menu_active = $parent;
+							}
+							//this is for handling <li> 
+							//check whether has children, if yess then echo nav-item-submenu in tag <li>
+							$nav_item_sub_menu = (isset($parent['children']) and sizeof($parent['children']) > 0) ? "nav-item-submenu" : NULL;
+
+							//check whether active or no, echo nav-item-expanded if so
+							$expanded = ($parent['menu'] === ucfirst($this->router->fetch_class())) ? "nav-item-expanded nav-item-open" : NULL;
+							//check whether has sub menu. href will be # if no
+							$href = (isset($parent['children']) and sizeof($parent['children']) > 0) ? "#" : site_url($parent['controller'] . '/' . $parent['method']);
+							?>
 							<!-- /main -->
-						<?php endforeach;?>
+							<li class="nav-item <?php echo $nav_item_sub_menu . ' ' . $expanded; ?>">
+								<!-- a link (menu items) -->
+								<a href="<?php echo $href ?>" class="nav-link">
+
+									<i class="<?php echo $parent['icon'] ?>"></i>
+									<span><?php echo $parent['menu'] ?></span>
+
+								</a>
+								<!-- end of a link -->
+
+								<!-- This part is for submenu (check whether has then show) -->
+								<?php if (isset($parent['children'])) : ?>
+									<ul class="nav nav-group-sub" data-submenu-title="">
+										<?php foreach ($parent['children'] as $child => $submenu) :
+													//define url for sub menu
+													$href_submenu = site_url($submenu['prefix'] . '/' . $submenu['controller'] . '/' . $submenu['method']);
+													$active = (($submenu['controller'] === ucfirst($this->router->fetch_class())) and ($submenu['method'] === $this->router->fetch_method())) ? "active" : NULL;
+													?>
+											<li class="nav-item">
+												<a href="<?php echo $href_submenu; ?>" class="nav-link <?php echo $active ?>">
+													<i class="<?php echo $submenu['icon'] ?>"></i> <?php echo $submenu['menu'] ?>
+												</a>
+											</li>
+										<?php endforeach; ?>
+									</ul>
+									<!-- End of This part is for submenu (check whether has then show) -->
+								<?php endif; ?>
+							</li>
+						<?php } ?>
 					</ul>
 				</div>
 				<!-- /main navigation -->
@@ -175,263 +208,62 @@
 		<div class="content-wrapper">
 
 			<!-- Page header -->
-			<div class="page-header page-header-light">
-				<div class="page-header-content header-elements-md-inline">
-					<div class="page-title d-flex">
-						<h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Starters</span> - Fixed Layout  </h4> <?php echo $this->router->fetch_class() ?>
-						<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+			<div class="page-header page-header-dark has-cover">
+				<div class="page-header-content header-elements-inline">
+					<div class="page-title">
+						<h5>
+							<i class="<?php echo $menu_active['icon'] ?> mr-2"></i>
+							<span class="font-weight-semibold"><?php echo ucfirst($this->router->fetch_class()) ?></span>
+							<small class="d-block opacity-75"><?php echo isset($pageHeader) ? $pageHeader : "Create an awesome thing today, " . $this->session->userdata('name'); ?></small>
+						</h5>
 					</div>
 
-					<div class="header-elements d-none">
-						<a href="#" class="btn btn-labeled btn-labeled-right bg-primary">Button <b><i class="icon-menu7"></i></b></a>
-					</div>
-				</div>
+					<div class="header-elements d-flex align-items-center">
 
-				<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
-					<div class="d-flex">
-						<div class="breadcrumb">
-							<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-							<a href="#" class="breadcrumb-item">Link</a>
-							<span class="breadcrumb-item active">Current</span>
-						</div>
-
-						<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
-					</div>
-
-					<div class="header-elements d-none">
-						<div class="breadcrumb justify-content-center">
-							<a href="#" class="breadcrumb-elements-item">
-								Link
-							</a>
-
-							<div class="breadcrumb-elements-item dropdown p-0">
-								<a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
-									Dropdown
-								</a>
-
-								<div class="dropdown-menu dropdown-menu-right">
-									<a href="#" class="dropdown-item">Action</a>
-									<a href="#" class="dropdown-item">Another action</a>
-									<a href="#" class="dropdown-item">One more action</a>
-									<div class="dropdown-divider"></div>
-									<a href="#" class="dropdown-item">Separate action</a>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
+
+				<!-- Alternative navbar -->
+
+				<div class="navbar navbar-expand-lg navbar-light bg-light border-top shadow-0">
+					<div class="text-center d-lg-none w-100">
+						<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-second">
+							<i class="icon-unfold mr-2"></i>
+							Alternative navbar
+						</button>
+					</div>
+
+					<div class="navbar-collapse collapse" id="navbar-second">
+						<?php if (isset($menu_active['actions']) and sizeof($menu_active['actions']) > 0) { ?>
+							<ul class="navbar-nav ml-lg-auto">
+								<?php foreach ($menu_active['actions'] as $action => $item) : ?>
+									<li class="nav-item">
+										<a href="#" class="navbar-nav-link">
+											<i class="<?php echo $item['icon'] ?> mr-2"></i>
+											<?php echo $item['name'] ?>
+										</a>
+									</li>
+								<?php endforeach; ?>
+							</ul>
+						<?php } else { ?>
+							<ul class="navbar-nav">
+								<li class="nav-item navbar-nav-link" onclick="showGreeting()">
+									<i class="icon-git-branch mr-2"></i>
+									Hey.. look at you, you are gonna make a great life!
+								</li>
+							</ul>
+						<?php } ?>
+
+					</div>
+				</div>
+				<!-- /alternative navbar -->
 			</div>
 			<!-- /page header -->
 
 
 			<!-- Content area -->
 			<div class="content">
-
-				<!-- Basic card -->
-				<div class="card">
-					<div class="card-header header-elements-inline">
-						<h5 class="card-title">Basic card</h5>
-						<div class="header-elements">
-							<div class="list-icons">
-								<a class="list-icons-item" data-action="collapse"></a>
-								<a class="list-icons-item" data-action="reload"></a>
-								<a class="list-icons-item" data-action="remove"></a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card-body">
-						<h6 class="font-weight-semibold">Start your development with no hassle!</h6>
-						<p class="mb-3">Common problem of templates is that all code is deeply integrated into the core. This limits your freedom in decreasing amount of code, i.e. it becomes pretty difficult to remove unnecessary code from the project. Limitless allows you to remove unnecessary and extra code easily just by removing the path to specific LESS file with component styling. All plugins and their options are also in separate files. Use only components you actually need!</p>
-
-						<h6 class="font-weight-semibold">What is this?</h6>
-						<p class="mb-3">Starter kit is a set of pages, useful for developers to start development process from scratch. Each layout includes base components only: layout, page kits, color system which is still optional, bootstrap files and bootstrap overrides. No extra CSS/JS files and markup. CSS files are compiled without any plugins or components. Starter kit was moved to a separate folder for better accessibility.</p>
-
-						<h6 class="font-weight-semibold">How does it work?</h6>
-						<p>You open one of the starter pages, add necessary plugins, uncomment paths to files in components.less file, compile new CSS. That's it. I'd also recommend to open one of main pages with functionality you need and copy all paths/JS code from there to your new page, it's just faster and easier.</p>
-					</div>
-				</div>
-				<!-- /basic card -->
-
-
-				<!-- Basic table -->
-				<div class="card">
-					<div class="card-header header-elements-inline">
-						<h5 class="card-title">Basic table</h5>
-						<div class="header-elements">
-							<div class="list-icons">
-								<a class="list-icons-item" data-action="collapse"></a>
-								<a class="list-icons-item" data-action="reload"></a>
-								<a class="list-icons-item" data-action="remove"></a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card-body">
-						Seed project includes the most basic components that can help you in development process - basic grid example, card, table and form layouts with standard components. Nothing extra. Easily turn on and off styles of different components in <code>_config.scss</code> file so that your CSS is always as clean as possible. Bootstrap components are always enabled though.
-					</div>
-
-					<div class="table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Username</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Eugene</td>
-									<td>Kopyov</td>
-									<td>@Kopyov</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Victoria</td>
-									<td>Baker</td>
-									<td>@Vicky</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>James</td>
-									<td>Alexander</td>
-									<td>@Alex</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>Franklin</td>
-									<td>Morrison</td>
-									<td>@Frank</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<!-- /basic table -->
-
-
-				<!-- Form layouts -->
-				<div class="row">
-					<div class="col-md-6">
-
-						<!-- Horizontal form -->
-						<div class="card">
-							<div class="card-header header-elements-inline">
-								<h5 class="card-title">Horizontal form</h5>
-								<div class="header-elements">
-									<div class="list-icons">
-										<a class="list-icons-item" data-action="collapse"></a>
-										<a class="list-icons-item" data-action="reload"></a>
-										<a class="list-icons-item" data-action="remove"></a>
-									</div>
-								</div>
-							</div>
-
-							<div class="card-body">
-								<form action="#">
-									<div class="form-group row">
-										<label class="col-lg-3 col-form-label">Text input</label>
-										<div class="col-lg-9">
-											<input type="text" class="form-control">
-										</div>
-									</div>
-
-									<div class="form-group row">
-										<label class="col-lg-3 col-form-label">Password</label>
-										<div class="col-lg-9">
-											<input type="password" class="form-control">
-										</div>
-									</div>
-
-									<div class="form-group row">
-										<label class="col-lg-3 col-form-label">Select</label>
-										<div class="col-lg-9">
-											<select name="select" class="form-control">
-												<option value="opt1">Basic select</option>
-												<option value="opt2">Option 2</option>
-												<option value="opt3">Option 3</option>
-												<option value="opt4">Option 4</option>
-												<option value="opt5">Option 5</option>
-												<option value="opt6">Option 6</option>
-												<option value="opt7">Option 7</option>
-												<option value="opt8">Option 8</option>
-											</select>
-										</div>
-									</div>
-
-									<div class="form-group row">
-										<label class="col-lg-3 col-form-label">Textarea</label>
-										<div class="col-lg-9">
-											<textarea rows="5" cols="5" class="form-control" placeholder="Default textarea"></textarea>
-										</div>
-									</div>
-
-									<div class="text-right">
-										<button type="submit" class="btn btn-primary">Submit form <i class="icon-paperplane ml-2"></i></button>
-									</div>
-								</form>
-							</div>
-						</div>
-						<!-- /horizotal form -->
-
-					</div>
-
-					<div class="col-md-6">
-
-						<!-- Vertical form -->
-						<div class="card">
-							<div class="card-header header-elements-inline">
-								<h5 class="card-title">Vertical form</h5>
-								<div class="header-elements">
-									<div class="list-icons">
-										<a class="list-icons-item" data-action="collapse"></a>
-										<a class="list-icons-item" data-action="reload"></a>
-										<a class="list-icons-item" data-action="remove"></a>
-									</div>
-								</div>
-							</div>
-
-							<div class="card-body">
-								<form action="#">
-									<div class="form-group">
-										<label>Text input</label>
-										<input type="text" class="form-control">
-									</div>
-
-									<div class="form-group">
-										<label>Select</label>
-										<select name="select" class="form-control">
-											<option value="opt1">Basic select</option>
-											<option value="opt2">Option 2</option>
-											<option value="opt3">Option 3</option>
-											<option value="opt4">Option 4</option>
-											<option value="opt5">Option 5</option>
-											<option value="opt6">Option 6</option>
-											<option value="opt7">Option 7</option>
-											<option value="opt8">Option 8</option>
-										</select>
-									</div>
-
-									<div class="form-group">
-										<label>Textarea</label>
-										<textarea rows="4" cols="4" class="form-control" placeholder="Default textarea"></textarea>
-									</div>
-
-									<div class="text-right">
-										<button type="submit" class="btn btn-primary">Submit form <i class="icon-paperplane ml-2"></i></button>
-									</div>
-								</form>
-							</div>
-						</div>
-						<!-- /vertical form -->
-
-					</div>
-				</div>
-				<!-- /form layouts -->
-
+				<?php echo $content ?>
 			</div>
 			<!-- /content area -->
 
@@ -479,7 +311,18 @@
 
 	</div>
 	<!-- /page content -->
+	<script type="text/javascript">
+		function showGreeting() {
 
+			swal({
+
+				title: 'Good Job',
+				text: 'you are a curious person. great! Einstein did such a thing as well',
+				icon: 'success',
+				button: 'Aww yiss!'
+			});
+		}
+	</script>
 </body>
 
 </html>
