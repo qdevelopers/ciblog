@@ -1,28 +1,64 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-
 $menus = [
 	[
 		'menu' 		 => 'Dashboard', 
-		'icon'		 => 'icon-home5', 
-		'controller' => 'admin/home',
+		'icon'		 => 'icon-home2', 
+		'controller' => 'admin/Dashboard',
+		'method'	 => 'index',
 		'access'	 => ['administrator', 'user', 'writer'],
 		'active'	 => NULL,
 	],
 	[
 		'menu' 		 => 'Posts', 
 		'icon' 		 => 'icon-pushpin', 
-		'controller' => 'admin/post',
+		'controller' => 'admin/posts',
+		'method'	 => 'index',
 		'access'	 => ['administrator', 'user', 'writer'],
-		'active'	 => NULL,
+		'actions'	 => [
+							'create' => ['icon' => 'icon-pencil7', 'name' => 'Create New Post', 'method' => 'new_post'],
+							'post_trash' => ['icon' => 'icon-trash', 'name' => 'Post Trash', 'method' => 'command'],
+						],
+		'children'	 => [
+							'read' => [
+								'menu' 			=> 'All Posts', 
+								'icon' 			=> 'icon-stack', 
+								'controller' 	=> 'Posts', 
+								'prefix' 		=> 'admin',
+								'method' 		=> 'index',
+							],
+							'create' => [
+								'menu' 			=> 'Create New Post', 
+								'icon' 			=> 'icon-pencil7', 
+								'controller' 	=> 'Posts', 
+								'prefix' 		=> 'admin', 
+								'method' 		=> 'new_post',
+							],
+							'categories' => [
+								'menu' 			=> 'Categories', 
+								'icon' 			=> 'icon-stack2', 
+								'controller' 	=> 'Categories',
+								'prefix' 		=> 'admin',  
+								'method' 		=> 'index',
+							],
+							'tags' => [
+								'menu'			=> 'Tags', 
+								'icon' 			=> 'icon-price-tag2', 
+								'controller' 	=> 'Tags', 
+								'prefix' 		=> 'admin', 
+								'method' 		=> 'index',
+							],
+						]
 	],
 	[
 		'menu' 		 => 'Users', 
 		'icon' 		 => 'icon-users4', 
 		'controller' => 'admin/user',
+		'method'	 => 'index',
 		'access'	 => ['administrator'],
 		'active'	 => NULL,
+		'children'	 => []
 	],		
 ];
 
