@@ -26,6 +26,7 @@
 	<!-- Theme JS files -->
 	<script src="<?php echo base_url(); ?>assets/js/app.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/swal.js"></script>
+
 	<!-- /theme JS files -->
 
 </head>
@@ -238,7 +239,7 @@
 							<ul class="navbar-nav ml-lg-auto">
 								<?php foreach ($menu_active['actions'] as $action => $item) : ?>
 									<li class="nav-item">
-										<a href="#" class="navbar-nav-link">
+										<a href="#" data-cmd="<?php echo $item['command'] ?>" data-method="<?php echo $item['method'] ?>" class="navbar-nav-link get-action">
 											<i class="<?php echo $item['icon'] ?> mr-2"></i>
 											<?php echo $item['name'] ?>
 										</a>
@@ -310,6 +311,7 @@
 		<!-- /main content -->
 
 	</div>
+	<script src="<?php echo base_url(); ?>assets/js/global.js"></script>
 	<!-- /page content -->
 	<script type="text/javascript">
 		function showGreeting() {
