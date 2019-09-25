@@ -17,8 +17,8 @@ $menus = [
 		'method'	 => 'index',
 		'access'	 => ['administrator', 'user', 'writer'],
 		'actions'	 => [
-							'create' => ['icon' => 'icon-pencil7', 'name' => 'Create New Post', 'method' => 'new_post'],
-							'post_trash' => ['icon' => 'icon-trash', 'name' => 'Post Trash', 'method' => 'command'],
+							'create' => ['icon' => 'icon-pencil7', 'name' => 'Create New Post', 'method' => 'new_post', 'command' => 'href'],
+							'post_trash' => ['icon' => 'icon-trash', 'name' => 'Post Trash', 'method' => 'trash_post', 'command' => 'href'],
 						],
 		'children'	 => [
 							'read' => [
@@ -54,7 +54,7 @@ $menus = [
 	[
 		'menu' 		 => 'Comments',
 		'icon'		 => 'icon-comment-discussion',
-		'controller' => 'admin/Dashboard',
+		'controller' => 'admin/Comments',
 		'method'	 => 'index',
 		'access'	 => ['administrator', 'user', 'writer'],
 		'active'	 => NULL,
